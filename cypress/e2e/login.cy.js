@@ -6,7 +6,6 @@ describe('Login', () => {
   });
 
   it('Login com dados inválidos devem apresentar mensagem de erro', () => {
-
     // Act
     cy.get('#username').click().type('marcelo.nietzsche');
     cy.get('#senha').click().type('x1x2x3X4@'); // semha inválida
@@ -38,10 +37,12 @@ describe('Login', () => {
   });
 
   it('Login com dados válidos devem permitir entrada do sistema', () => {
-    
+    cy.screenshot('apos-visitar-pagina');
     cy.get('#username').click().type('marcelo.ferreira');
     cy.get('#senha').click().type('123456');
+    cy.screenshot('apos-preencher-dados-validos');
     cy.contains('button', 'Entrar').click();
+    cy.screenshot('apos-clicar-botao-entrar');
     cy.contains('h4', 'Realizar Transferência').should('be.visible');
   });
 
