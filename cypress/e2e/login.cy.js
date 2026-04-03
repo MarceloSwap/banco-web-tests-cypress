@@ -1,8 +1,9 @@
+
 describe('Login', () => {
   beforeEach(() => {
     // Arrange
-    cy.visit('http://localhost:4000');
-
+    cy.visit('/')
+    cy.screenshot('apos-visitar-a-pagina');
   });
 
   it('Login com dados inválidos devem apresentar mensagem de erro', () => {
