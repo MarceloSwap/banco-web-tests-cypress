@@ -7,8 +7,10 @@ describe('Login', () => {
 
   it('Login com dados inválidos devem apresentar mensagem de erro', () => {
     // Act
-    cy.get('#username').click().type('marcelo.nietzsche');
-    cy.get('#senha').click().type('x1x2x3X4@'); // semha inválida
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click().type(credenciais.invalidaUsuarioSenha.usuario);
+      cy.get('#senha').click().type(credenciais.invalidaUsuarioSenha.senha); // semha inválida
+    });
     cy.contains('button', 'Entrar').click();
 
     // Assert
@@ -16,10 +18,10 @@ describe('Login', () => {
   });
 
   it('Login com username inválido deve apresentar mensagem de erro', () => {
-
-    // Act
-    cy.get('#username').click().type('marcelo.nietzsche');
-    cy.get('#senha').click().type('123456'); // semha inválida
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click().type(credenciais.invalidaUsuario.usuario);
+      cy.get('#senha').click().type(credenciais.invalidaUsuario.senha); // semha inválida
+    });
     cy.contains('button', 'Entrar').click();
     // Assert
     cy.get('.toast').should('have.text', 'Erro no login. Tente novamente.')
@@ -27,9 +29,11 @@ describe('Login', () => {
 
   it('Login com senha inválida deve apresentar mensagem de erro', () => {
 
-    // Act
-    cy.get('#username').click().type('marcelo.ferreira');
-    cy.get('#senha').click().type('654123'); // semha inválida
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click().type(credenciais.invalidaSenha.usuario);
+      cy.get('#senha').click().type(credenciais.invalidaSenha.senha); // semha inválida
+    })
+
     cy.contains('button', 'Entrar').click();
 
     // Assert
@@ -37,10 +41,10 @@ describe('Login', () => {
   });
 
   it('Login com dados válidos devem permitir entrada do sistema', () => {
-    cy.screenshot('apos-visitar-pagina');
-    cy.get('#username').click().type('marcelo.ferreira');
-    cy.get('#senha').click().type('123456');
-    cy.screenshot('apos-preencher-dados-validos');
+    cy.fixture('credenciais').then(c => {
+      cy.get('#username').click().type(c.valida.usuario);
+      cy.get('#senha').click().type(c.valida.senha);
+    });
     cy.contains('button', 'Entrar').click();
     cy.screenshot('apos-clicar-botao-entrar');
     cy.contains('h4', 'Realizar Transferência').should('be.visible');
