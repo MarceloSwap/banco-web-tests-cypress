@@ -1,0 +1,18 @@
+{
+    "valida": {
+        "usuario": "marcelo.ferreira",
+        "senha": "123456"
+    },
+    "invalidaUsuarioSenha": {
+        "usuario": "marcelo.invalido",
+        "senha": "1a2b3C"
+    },
+      "invalidaUsuario": {
+        "usuario": "marcelo.invalido",
+        "senha": "123456"
+    },
+      "invalidaSenha": {
+        "usuario": "marcelo.ferreira",
+        "senha": "aceloraQA"
+    }
+}
