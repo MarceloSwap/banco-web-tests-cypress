@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/MarceloSwap/banco-web-tests-cypress#readme",
   "devDependencies": {
-    "cypress": "^15.13.0"
+    "cypress": "^15.13.0",
+    "cypress-mochawesome-reporter": "^4.0.2"
   }
 }
